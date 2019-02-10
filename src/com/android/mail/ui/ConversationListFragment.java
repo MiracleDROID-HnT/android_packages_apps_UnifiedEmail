@@ -21,8 +21,10 @@ import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
@@ -544,10 +546,18 @@ public final class ConversationListFragment extends Fragment implements
         mSwipeRefreshWidget.setColorScheme(R.color.swipe_refresh_color1,
                 R.color.swipe_refresh_color2,
                 R.color.swipe_refresh_color3, R.color.swipe_refresh_color4);
+        mSwipeRefreshWidget.setProgressBackgroundColorSchemeColor(getBackground(getContext()));
         mSwipeRefreshWidget.setOnRefreshListener(this);
         mSwipeRefreshWidget.setScrollableChild(mListView);
 
         return rootView;
+    }
+
+    public static int getBackground(Context context) {
+        TypedArray array = context.obtainStyledAttributes(new int[]{android.R.attr.navigationBarColor});
+        int color = array.getColor(0, 0);
+        array.recycle();
+        return color;
     }
 
     /**
