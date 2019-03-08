@@ -554,7 +554,7 @@ public final class ConversationListFragment extends Fragment implements
     }
 
     public static int getBackground(Context context) {
-        TypedArray array = context.obtainStyledAttributes(new int[]{android.R.attr.navigationBarColor});
+        TypedArray array = context.obtainStyledAttributes(new int[]{android.R.attr.colorBackground});
         int color = array.getColor(0, 0);
         array.recycle();
         return color;
